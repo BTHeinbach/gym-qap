@@ -15,7 +15,11 @@ class qapEnv(gym.Env):
                  stateMode):
 
         __location__ = os.path.realpath(os.path.join(os.getcwd(), os.path.dirname(__file__)))
-        self.DistanceMatrices, self.FlowMatrices = pickle.load(open(os.path.join(__location__,'qap_matrices.pkl'), 'rb'))
+        try: 
+            self.DistanceMatrices, self.FlowMatrices = pickle.load(open(os.path.join(__location__,'qap_matrices.pkl'), 'rb'))
+        except:
+            self.DistanceMatrices, self.FlowMatrices = pickle.load(open(os.path.join('/input/qaplib-matrices/','qap_matrices.pkl'), 'rb'))  
+        
         self.instance = None
         
         while not (self.instance in self.DistanceMatrices.keys() or self.instance in self.FlowMatrices.keys() or self.instance in ['Neos-n6', 'Neos-n7', 'Brewery']):
