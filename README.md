@@ -1,2 +1,2 @@
-# gym_qap
+# gymqap
 OpenAI Gym implementation of QAPLIB 
