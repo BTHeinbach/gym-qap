@@ -2,7 +2,7 @@ import numpy as np
 from itertools import permutations
 import gym
 from gym import error, spaces, utils
-from numpy.random import default_rng
+from numpy import random as rd
 import pygame
 import pickle
 import os
@@ -120,11 +120,11 @@ class qapEnv(gym.Env):
         if isinstance(self.observation_space, gym.spaces.discrete.Discrete):
             s = self.observation_space.sample()
         elif isinstance(self.observation_space, gym.spaces.box.Box):
-            s = default_rng().choice(range(1,self.n+1), size=self.n, replace=False) 
+            s = rd.default_rng().choice(range(1,self.n+1), size=self.n, replace=False) 
         return s
     
     def statesMaker(self): # Removed on 29.07.2020
-        rng = default_rng()
+        rng = rd.default_rng()
         numbers = rng.choice(range(1,self.n+1), size=self.n, replace=False)
         perms = set(permutations(numbers))
         states = []
